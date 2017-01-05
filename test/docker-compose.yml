@@ -1,0 +1,32 @@
+db1:
+    image: mariadb
+    environment:
+        MYSQL_ROOT_PASSWORD: foobar
+        MYSQL_DATABASE: db1
+        MYSQL_USER: db1user
+        MYSQL_PASSWORD: db1password
+    volumes:
+        - ./data:/docker-entrypoint-initdb.d
+
+db2:
+    image: mariadb
+    environment:
+        MYSQL_ROOT_PASSWORD: foobar
+        MYSQL_DATABASE: db2
+        MYSQL_USER: db2user
+        MYSQL_PASSWORD: db2password
+
+refresh:
+    image: mariadb-refresh
+    environment:
+        FROM_HOST: db1
+        FROM_USER: db1user
+        FROM_PASSWORD: db1password
+        FROM_DB: db1
+        TO_HOST: db2
+        TO_USER: db2user
+        TO_PASSWORD: db2password
+        TO_DB: db2
+    links:
+        - db1
+        - db2
