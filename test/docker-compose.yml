@@ -17,8 +17,9 @@ db2:
         MYSQL_PASSWORD: db2password
 
 refresh:
-    image: mariadb-refresh
+    image: pugnascotia/mariadb-refresh
     environment:
+        REFRESH_SCHEDULE: "*/5 * * * * *"
         FROM_HOST: db1
         FROM_USER: db1user
         FROM_PASSWORD: db1password

@@ -55,7 +55,7 @@ Run the container with the environment variables below.
 
 Copy data between `dbhost1` and `dbhost2` at 1am every day.
 
-    docker run mariadb-refresh \
+    docker run -d pugnascotia/mariadb-refresh \
         -e REFRESH_SCHEDULE="0 1 * * * *" \
         -e FROM_HOST=dbhost1 \
         -e FROM_PORT=3306 \
